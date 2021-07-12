@@ -18,7 +18,7 @@
 
 #### 링크
 * [깃허브](https://github.com/Forgot09/KoreaWordRelay)
-* [깃허브 다운로드](https://github.com/Forgot09/KoreaWordRelay.git)
+* [깃허브 다운로드](https://github.com/Forgot09/KoreaWordRelay/archive/refs/heads/main.zip)
 
 
 ##### 개발자들
