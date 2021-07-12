@@ -21,7 +21,7 @@ def jamo(a):
     a = list(a)
     chosung = ['ㄱ', 'ㄲ', 'ㄴ', 'ㄷ', 'ㄸ', 'ㄹ', 'ㅁ', 'ㅂ', 'ㅃ', 'ㅅ', 'ㅆ', 'ㅇ', 'ㅈ', 'ㅉ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ']
     jungsung = ['ㅏ', 'ㅐ', 'ㅑ', 'ㅒ', 'ㅓ', 'ㅔ', 'ㅕ', 'ㅖ', 'ㅗ', 'ㅘ', 'ㅙ', 'ㅚ', 'ㅛ', 'ㅜ', 'ㅝ', 'ㅞ', 'ㅟ', 'ㅠ', 'ㅡ', 'ㅢ', 'ㅣ']
-    jongsung = ['ㄱ', 'ㄲ', 'ㄳ', 'ㄴ', 'ㄵ', 'ㄶ', 'ㄷ', 'ㄹ', 'ㄺ', 'ㄻ', 'ㄼ', 'ㄽ', 'ㄾ', 'ㄿ', 'ㅀ', 'ㅁ', 'ㅂ', 'ㅄ', 'ㅅ', 'ㅆ', 'ㅇ', 'ㅈ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ', '']
+    jongsung = ['ㄱ', 'ㄲ', 'ㄳ', 'ㄴ', 'ㄵ', 'ㄶ', 'ㄷ', 'ㄹ', 'ㄺ', 'ㄻ', 'ㄼ', 'ㄽ', 'ㄾ', 'ㄿ', 'ㅀ', 'ㅁ', 'ㅂ', 'ㅄ', 'ㅅ', 'ㅆ', 'ㅇ', 'ㅈ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ', '#']
 
     bunli = []
 
@@ -130,20 +130,23 @@ while judgement:
             continue
         bunli = jamo(inputData)
         if inputData[0] != botWords[-1] and not inputData[0] in dum and not inputData[0] in dum_etc and not bunli[1] == 'ㄴ':
+            botWordsl  = jamo(botWords)
+            print(botWordsl, bunli[2])
+            if botWordsl[-1] == '#' and bunli[2] == '#':
+                print(inputData[0], '는', botWords[-1], '로 시작하지 않습니다, 다시 입력해주세요')
+            elif botWordsl[-1] != '#' and bunli[2] == '#':
+                print(inputData[0], '은', botWords[-1], '로 시작하지 않습니다, 다시 입력해주세요')
+            elif botWordsl[-1] == '#' and bunli[2] != '#':
+                print(inputData[0], '는', botWords[-1], '으로 시작하지 않습니다, 다시 입력해주세요')
+            elif botWordsl[-1] != '#' and bunli[2] != '#':
+                print(inputData[0], '은', botWords[-1], '으로 시작하지 않습니다, 다시 입력해주세요')
             judgement = True
-            turnTimes -= 1
-            print('hello world')
+            if turnTimes >= 2:
+                turnTimes -= 1
             continue
         check(inputData)
-        if inputData[0] != botWords[-1]:
-            print(inputData[0], '는', botWords[-1], '로 시작하지 않습니다, 다시 입력해주세요')
-            judgement = True
-            turnTimes -= 1
-            print('hello world2')
-            continue
-        if judgement:
-            continue
-        else:
+
+        if not judgement:
             judgement = True
         
     bot_words(inputData) 
