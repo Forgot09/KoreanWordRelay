@@ -23,3 +23,4 @@
 
 ##### 개발자들
 * <img src = "https://cdn.discordapp.com/attachments/859031027430326282/864072007065534464/flat-2126885_1280.jpg" width = "1.5%" height = "1.5%"> __forgot__
+* ~~동생몬~~
