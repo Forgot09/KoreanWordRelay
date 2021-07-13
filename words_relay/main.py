@@ -47,69 +47,70 @@ def jamo(a):
 def check(data):
     global judgement, beforeList, turnTimes, botWords
     if data == 'end' or data == '항복' or data == 'gg':
-        print('봇의 승리 입니다. 아쉽군요, 다시 도전해보세요')
-        print('프로그램이 종료 됩니다')
+        print('[!] 봇의 승리 입니다. 아쉽군요, 다시 도전해보세요')
+        print('[!] 프로그램이 종료 됩니다')
         exit()
     elif 1 == len(data):
         judgement = True
         turnTimes -= 1
-        print('단어가 한 글자 입니다, 다시 입력해주세요')
+        print('[!] 단어가 한 글자 입니다, 다시 입력해주세요')
     elif data in beforeList:
         judgement = True
         turnTimes-=1
-        print('이 단어를 이미 사용했습니다, 다시 입력해주세요')
+        print('[!] 이 단어를 이미 사용했습니다, 다시 입력해주세요')
     elif data.upper() != data.lower():
         judgement = True
         turnTimes -= 1
-        print('영어입니다, 다시 입력해주세요')
+        print('[!] 영어입니다, 다시 입력해주세요')
 
 def bot_words(data):
     global wordsList, botWords, dum, bunli, dum_etc, canFirstWords
     turn = 0
     checkVar = True
-    if data[-1]+'\n' in canFirstWords or dum[data[-1]] in canFirstWords or bunli[1] == 'ㄴ' and dum_etc[data[-1] in canFirstWords]:
-        while checkVar:
-            botWords = wordsList[turn]
-            if data[-1] == botWords[0]:
-                botWords = botWords.rstrip('\n')
-                print(botWords)
-                wordsList.remove(botWords+'\n')
-                checkVar = False
-            turn += 1
-
-        if data[-1] in dum:
-            botWords = wordsList[turn]
+    if data[-1]+'\n' in canFirstWords or dum[data[-1]]+'\n' in canFirstWords or bunli[1] == 'ㄴ' and dum_etc[data[-1]+'\n' in canFirstWords]:
+        if not data[-1] in dum or not bunli[2] == 'ㄴ' and data[-1] in dum_etc:
             while checkVar:
+                botWords = wordsList[turn]
+                if data[-1] == botWords[0]:
+                    botWords = botWords.rstrip('\n')
+                    print(botWords)
+                    wordsList.remove(botWords+'\n')
+                    checkVar = False
+                turn += 1
+        elif data[-1] in dum:
+            while checkVar:
+                botWords = wordsList[turn]
                 if dum[data[-1]] == botWords[0]:
                     botWords = botWords.rstrip('\n')
                     print(botWords)
-                    wordsList.remove(botWords)
+                    wordsList.remove(botWords+'\n')
                     checkVar = False
                 turn += 1
-        if bunli[2] == 'ㄴ' and data[-1] in dum_etc:
+        elif bunli[2] == 'ㄴ' and data[-1] in dum_etc:
             while checkVar:
                 if dum_etc[data[-1]] == botWords[0]:
                     botWords = botWords.rstrip('\n')
                     print(botWords)
-                    wordsList.remove(botWords)
+                    wordsList.remove(botWords+'\n')
                     checkVar = False
+
     else:
-        print('당신의 승리입니다. 축하드립니다 이 화면을 캡쳐하여 개발자 이메일로 전해주세요')
-        print('개발자 이메일 >> forcoding4@gmail.com')
-        sys.exit()
+        print('[!] 당신의 승리입니다. 축하드립니다 이 화면을 캡쳐하여 개발자 이메일로 전해주세요')
+        print('[!] 개발자 이메일 >> forcoding4@gmail.com')
+        sys.exit('[!] 끝말잇기가 종료 되었습니다')
 #####################################################
 
 ###################   main   ########################
-print('끝말잇기가 시작되었습니다')
+print('[!] 끝말잇기가 시작되었습니다')
 print('='*50)
 while judgement:
     if turnTimes == 1:
-        inputData = input('단어를 입력해주세요 >> ')
+        inputData = input('[!] 단어를 입력해주세요 >> ')
         inputData = inputData.rstrip('\n')
         if inputData == '' or inputData == ' ':
             judgement = True
             turnTimes -= 1
-            print('단어를 입력하지 않았습니다, 다시 입력해주세요')
+            print('[!] 단어를 입력하지 않았습니다, 다시 입력해주세요')
         bunli = jamo(inputData)
         judgement = False
         check(inputData)
@@ -119,18 +120,11 @@ while judgement:
             judgement = True
             
     else:
-        inputData = input('단어를 입력해주세요 >> ')
+        inputData = input('[!] 단어를 입력해주세요 >> ')
         inputData = inputData.rstrip('\n')
-        if inputData == 'checker':
-            print('='*50)
-            print('judgement >> ', judgement)
-            print('botWords >> ', botWords)
-            print('turnTimes >> ', turnTimes)
-            print('='*50)
-            continue
         bunli = jamo(inputData)
         if inputData[0] != botWords[-1] and not inputData[0] in dum and not inputData[0] in dum_etc and not bunli[1] == 'ㄴ':
-            print(inputData[0], '(은)는', botWords[-1], '(으)로 시작하지 않습니다, 다시 입력해주세요')
+            print('[!] ', inputData[0], '(은)는', botWords[-1], '(으)로 시작하지 않습니다, 다시 입력해주세요')
             judgement = True
             if turnTimes > 2:
                 turnTimes -= 1
@@ -142,7 +136,7 @@ while judgement:
     try:
         bot_words(inputData) 
         turnTimes += 1
-    except:
-        print('당신의 승리입니다. 축하드립니다 이 화면을 캡쳐하여 개발자 이메일로 전해주세요')
-        print('개발자 이메일 >> forcoding4@gmail.com')
-        sys.exit()
+    except IndexError:
+        print('[!] 당신의 승리입니다. 축하드립니다 이 화면을 캡쳐하여 개발자 이메일로 전해주세요')
+        print('[!] 개발자 이메일 >> forcoding4@gmail.com')
+        sys.exit('[!] 끝말잇기가 종료 되었습니다')
