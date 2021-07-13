@@ -28,3 +28,7 @@
 ##### 개발자들
 * <img src = "https://cdn.discordapp.com/attachments/859031027430326282/864072007065534464/flat-2126885_1280.jpg" width = "1.5%" height = "1.5%"> __forgot__
 * ~~<img src = "https://cdn.pixabay.com/photo/2016/12/27/15/58/omg-1934214_960_720.jpg" width = "1.5%" height = "1.5%">동생몬~~
+*
+##### 조언
+* [freecovid](https://github.com/freecovid19)
+* [kty0205](https://github.com/kty0205)
