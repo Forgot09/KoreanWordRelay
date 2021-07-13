@@ -15,6 +15,11 @@
 
 * 오프라인
 
+####사용법
+1. 파일 관리자를 연다
+2. 아무 에디터로 words_relay __파일__을 연다
+3. main.py를 실행 시켜준다
+
 #### 링크
 * [깃허브](https://github.com/Forgot09/KoreaWordRelay)
 * [깃허브 다운로드](https://github.com/Forgot09/KoreaWordRelay/archive/refs/heads/main.zip)
