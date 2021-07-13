@@ -30,5 +30,5 @@
 * ~~<img src = "https://cdn.pixabay.com/photo/2016/12/27/15/58/omg-1934214_960_720.jpg" width = "1.5%" height = "1.5%">동생몬~~
 *
 ##### 조언
-* [freecovid](https://github.com/freecovid19)
-* [kty0205](https://github.com/kty0205)
+* [freecovid\(깃헙\)](https://github.com/freecovid19)
+* [kty0205\(깃헙\)](https://github.com/kty0205)
