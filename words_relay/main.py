@@ -1,4 +1,5 @@
-#-*- coding: utf-8 -*- 
+#-*- coding: utf-8 -*-
+print("[!] 불러오는 중")
 import sys
 
 #####################################################
@@ -67,7 +68,9 @@ def bot_words(data):
     global wordsList, botWords, dum, bunli, dum_etc, canFirstWords
     turn = 0
     checkVar = True
-    if bunli[2] == 'ㄴ' and data[-1] in dum_etc:
+
+    #제일 좁은 범위인 맨 끝 글자가 dum_etc에 들어가 있어야 하고, 자모 결과가 맨 뒤에서 앞으로 한 칸째 글자의 받침이 ㄴ이어야 함
+    if bunli[2] == 'ㄴ' and data[-1] in dum_etc and dum_etc[data[-1]]+'\n' in canFirstWords:
         while checkVar:
             botWords = wordsList[turn]
             if dum_etc[data[-1]] == botWords[0]:
@@ -76,7 +79,8 @@ def bot_words(data):
                 checkVar = False
             turn += 1
     
-    elif data[-1] in dum:
+    #dum에 data의 맨 마지막 글자가 들어가 있어야 함
+    elif data[-1] in dum and dum[data[-1]]+'\n' in canFirstWords:
             while checkVar:
                 botWords = wordsList[turn]
                 if dum[data[-1]] == botWords[0]:
@@ -85,20 +89,21 @@ def bot_words(data):
                     checkVar = False
                 turn += 1
     else:
-        if not bunli[2] == 'ㄴ' and data[-1] in dum_etc:
-            if not data[-1] in dum:
-                while checkVar:
-                    botWords = wordsList[turn]
-                    if data[-1] == botWords[0]:
-                        print(botWords, end='')
-                        wordsList.remove(botWords)
-                        checkVar = False
-                    turn += 1
+        if data[-1]+'\n' in canFirstWords:
+            while checkVar:
+                botWords = wordsList[turn]
+                if data[-1] == botWords[0]:
+                    print(botWords, end='')
+                    wordsList.remove(botWords)
+                    checkVar = False
+                turn += 1
         else:
             print('[!] 당신의 승리입니다. 축하드립니다 이 화면을 캡쳐하여 개발자 이메일로 전해주세요')
             print('[!] 개발자 이메일 >> forcoding4@gmail.com')
             sys.exit('[!] 끝말잇기가 종료 되었습니다')
 #####################################################
+
+print("[!] 불러오기 완료")
 
 ###################   main   ########################
 print('[!] 끝말잇기가 시작되었습니다')
@@ -124,19 +129,16 @@ while judgement:
         inputData = input('[!] 단어를 입력해주세요 >> ')
         inputData = inputData.rstrip('\n')
         bunli = jamo(inputData)
+        check(inputData)
         if inputData[0] != botWords[-1] and not inputData[0] in dum and not inputData[0] in dum_etc and not bunli[1] == 'ㄴ':
             print('[!] ', inputData[0], '(은)는', botWords[-1], '(으)로 시작하지 않습니다, 다시 입력해주세요')
             judgement = True
             if turnTimes > 2:
                 turnTimes -= 1
             continue
-        check(inputData)
 
         if not judgement:
             judgement = True
-    try:
-        bot_words(inputData) 
-        turnTimes += 1
-    except:
-        print('[!] 예상치 못한 오류가 발생한것 같습니다, 개발자에게 연락하세요')
-        print('[!] 개발자 이메일 >> forcoding4@gmail.com')
+
+    bot_words(inputData) 
+    turnTimes += 1
