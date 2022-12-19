@@ -31,4 +31,4 @@
 *
 ##### 조언
 * [freecovid\(깃헙\)](https://github.com/freecovid19)
-* [kty0205\(깃헙\)](https://github.com/kty0205)
+* [cottons-kr\(깃헙\)](https://github.com/cottons-kr)
